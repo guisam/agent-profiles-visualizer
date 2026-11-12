@@ -39,6 +39,8 @@ visualizer to:
 - Target: feature parity with the prototype, then improve on it. The
   prototype's behavior and the API are described in `docs/visualize.md` in
   `guisam/Agent-Profiles`. Read it before you build a screen.
+- UI plan: `docs/ui-plan.md` maps each prototype feature to Vuetify
+  components and sets the build order.
 - Blocked for live API calls from the dev server:
   [guisam/Agent-Profiles#124](https://github.com/guisam/Agent-Profiles/issues/124)
   adds `visualize --allow-origin` (see "Agent Profiles API" below).
