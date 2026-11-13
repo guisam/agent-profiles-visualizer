@@ -36,8 +36,11 @@ visualizer to:
 
 - First implementation of every screen in `docs/ui-plan.md`: Resolution
   (`src/pages/index.vue`), Skills (`src/pages/skills/index.vue`), Compare
-  (`src/pages/skills/compare.vue`) and edit mode. Not yet checked against a
-  live server; the dev server runs on recorded fixtures.
+  (`src/pages/skills/compare.vue`) and edit mode. The built app loads live
+  data when served by `visualize` from
+  [guisam/Agent-Profiles#126](https://github.com/guisam/Agent-Profiles/pull/126)
+  (checked on workflow-skills; no edits tried yet). The dev server still runs
+  on recorded fixtures.
 - Code layout: API types and client in `src/api/`, Pinia stores per screen
   in `src/stores/`, the shared confirmation dialog in
   `src/composables/useConfirm.ts` and `src/components/ConfirmDialog.vue`.
@@ -55,7 +58,8 @@ visualizer to:
   adds `visualize --allow-origin` (see "Agent Profiles API" below).
 - End goal: `npx agent-profiles visualize` serves this app's build when
   `@guisam/agent-profiles-visualizer` is installed, so it runs on the API's own
-  origin: [guisam/Agent-Profiles#125](https://github.com/guisam/Agent-Profiles/issues/125).
+  origin: [guisam/Agent-Profiles#125](https://github.com/guisam/Agent-Profiles/issues/125),
+  implemented in PR #126 (Agent Profiles 0.31.0, merged; not on npm yet).
   This side is ready: relative asset URLs (`base: './'`), the
   `<meta name="csp-nonce">` passed to Vuetify's `cspNonce`
   (`src/plugins/vuetify.ts`), no `data:` fonts (the served CSP is
