@@ -145,6 +145,10 @@ export const useResolutionStore = defineStore('resolution', () => {
   }
 
   function select(key: SelectorKey, value: string | null) {
+    // A typed model ID need not be configured: the resolver shows which
+    // fallback applies. Keep it selectable, like a launch --model.
+    if (key === 'model' && value && !config.value?.models.includes(value))
+      launchFallbacks.model = value
     selection.value = { ...selection.value, [key]: value }
     // Optional skills belong to a role; changing model or family keeps them.
     if (key === 'role') requested.value = []
