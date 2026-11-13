@@ -2,13 +2,15 @@
  * router/index.ts
  *
  * Routes are generated from the files in ./src/pages by the vue-router Vite plugin.
+ * Hash history: the visualizer server serves only known files under its session
+ * URL, so path-based deep links would not survive a reload.
  */
 
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import { handleHotUpdate, routes } from 'vue-router/auto-routes'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes,
 })
 

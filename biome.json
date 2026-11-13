@@ -10,7 +10,8 @@
       "**",
       "!**/components.d.ts",
       "!**/typed-router.d.ts",
-      "!**/*.svg"
+      "!**/*.svg",
+      "!src/fixtures"
     ]
   },
   "formatter": {
