@@ -8,6 +8,9 @@ import VueRouter from 'vue-router/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // Relative asset URLs: `agent-profiles visualize` serves the build under a
+  // per-session token path (http://127.0.0.1:<port>/<token>/).
+  base: './',
   plugins: [
     // File-based routes from src/pages. Must run before Vue().
     VueRouter({ dts: 'src/typed-router.d.ts' }),
@@ -44,6 +47,11 @@ export default defineConfig({
       '@': fileURLToPath(new URL('src', import.meta.url)),
     },
     extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue'],
+  },
+  build: {
+    // Never inline fonts as data: URIs; the served CSP is `font-src 'self'`.
+    assetsInlineLimit: (file) =>
+      /\.(woff2?|ttf|eot)$/.test(file) ? false : undefined,
   },
   server: {
     port: 3000,
