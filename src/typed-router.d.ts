@@ -38,6 +38,20 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    '/skills/': RouteRecordInfo<
+      '/skills/',
+      '/skills',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
+    '/skills/compare': RouteRecordInfo<
+      '/skills/compare',
+      '/skills/compare',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
   }
 
   /**
@@ -54,6 +68,22 @@ declare module 'vue-router/auto-routes' {
     'src/pages/index.vue': {
       routes:
         | '/'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/pages/skills/index.vue': {
+      routes:
+        | '/skills/'
+      views:
+        | never
+      pathParamNames:
+        | never
+    }
+    'src/pages/skills/compare.vue': {
+      routes:
+        | '/skills/compare'
       views:
         | never
       pathParamNames:
