@@ -67,8 +67,10 @@ visualizer to:
   which ships only `dist/` and has no runtime dependencies. Keep app
   libraries in `devDependencies`. Not published yet.
 - `pnpm-workspace.yaml` turns off peer auto-install: the
-  `@guisam/agent-profiles` peer is for consumers, and npm has no matching
-  version yet.
+  `@guisam/agent-profiles` peer (`>=0.31.0`, the first version that serves
+  the app) is for consumers; this repo only calls its API over HTTP.
+- Source: [guisam/agent-profiles-visualizer](https://github.com/guisam/agent-profiles-visualizer),
+  Apache-2.0.
 
 ## Commands
 
@@ -162,9 +164,11 @@ The authoritative API description is `docs/visualize.md` in
 
 Until #124 lands, `.env.development` sets `VITE_AP_FIXTURES=true` and the dev
 server answers API calls from recorded responses (`src/api/fixtures.ts`).
-Each folder in `src/fixtures/` is one recorded project: `default` (the
-Agent Profiles repository) and `workflow-skills`. `VITE_AP_FIXTURE_SET` picks
-one; set it in `.env.development.local` and restart `pnpm dev`.
+Each folder in `src/fixtures/` is one recorded project. Only `default` (the
+Agent Profiles repository) is committed; other sets, such as one recorded from
+your own project, are git-ignored because they contain that project's
+configuration and skill text. `VITE_AP_FIXTURE_SET` picks one; set it in
+`.env.development.local` and restart `pnpm dev`.
 Resolutions exist for every configured host, model and family (and none) ×
 role × no, each single or all optional skills; comparisons for each pair
 within a same-name group on the Skills tab and between project-local skills.

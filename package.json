@@ -2,6 +2,20 @@
   "name": "@guisam/agent-profiles-visualizer",
   "version": "0.1.0",
   "description": "Vue + Vuetify front end for `agent-profiles visualize`: explore resolutions, browse and compare skills, and edit the configuration.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guisam/agent-profiles-visualizer.git"
+  },
+  "homepage": "https://github.com/guisam/agent-profiles-visualizer#readme",
+  "bugs": "https://github.com/guisam/agent-profiles-visualizer/issues",
+  "keywords": [
+    "agent-profiles",
+    "agents",
+    "skills",
+    "visualizer",
+    "vuetify"
+  ],
   "type": "module",
   "files": [
     "dist"
@@ -13,7 +27,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@guisam/agent-profiles": ">=0.30.1"
+    "@guisam/agent-profiles": ">=0.31.0"
   },
   "peerDependenciesMeta": {
     "@guisam/agent-profiles": {

@@ -24,16 +24,21 @@ npm i -D @guisam/agent-profiles @guisam/agent-profiles-visualizer
 npx agent-profiles visualize --edit
 ```
 
-`visualize` serves this app when the package is installed. That support is
-proposed in
-[guisam/Agent-Profiles#125](https://github.com/guisam/Agent-Profiles/issues/125)
-and not released yet; until then `visualize` serves its built-in page.
+From `@guisam/agent-profiles` 0.31.0, `visualize` serves this app when the
+package is installed and prints its version at startup. `--ui builtin` serves
+the built-in page instead. See
+[Use the visualizer app](https://github.com/guisam/Agent-Profiles/blob/main/docs/visualize.md#use-the-visualizer-app)
+for what is served and the content security policy.
 
 The package contains only the built app in `dist/`. It has no runtime
 dependencies and reads the configuration only through the `visualize` API.
 
 ## Develop
 
-See [AGENTS.md](AGENTS.md) for the stack, commands, fixture mode and API
+See [AGENTS.md](https://github.com/guisam/agent-profiles-visualizer/blob/main/AGENTS.md) for the stack, commands, fixture mode and API
 rules. In short: `pnpm install`, `pnpm dev`, and before a commit
 `pnpm check` and `pnpm build`.
+
+## License
+
+Apache-2.0

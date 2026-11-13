@@ -29,3 +29,8 @@ coverage
 
 # Local graft index cache
 graft/
+
+# Recorded fixture sets other than default hold a project's own configuration
+# and skill text; keep them local.
+/src/fixtures/*
+!/src/fixtures/default/
