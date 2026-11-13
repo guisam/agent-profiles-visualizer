@@ -1,0 +1,7 @@
+# @guisam/agent-profiles is a peer for consumers only; this repo talks to its
+# API over HTTP and must not install it (npm has no matching version yet).
+autoInstallPeers: false
+
+# Ships prebuilt binaries; its install script only compiles a fallback.
+allowBuilds:
+  "@parcel/watcher": false

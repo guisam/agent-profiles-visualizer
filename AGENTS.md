@@ -56,8 +56,15 @@ visualizer to:
 - End goal: `npx agent-profiles visualize` serves this app's build when
   `@guisam/agent-profiles-visualizer` is installed, so it runs on the API's own
   origin: [guisam/Agent-Profiles#125](https://github.com/guisam/Agent-Profiles/issues/125).
-  This side still needs Vite `base: './'`, reading the CSP nonce for Vuetify's
-  `cspNonce`, and an npm package.
+  This side is ready: relative asset URLs (`base: './'`), the
+  `<meta name="csp-nonce">` passed to Vuetify's `cspNonce`
+  (`src/plugins/vuetify.ts`), no `data:` fonts (the served CSP is
+  `font-src 'self'`), and the package `@guisam/agent-profiles-visualizer`,
+  which ships only `dist/` and has no runtime dependencies. Keep app
+  libraries in `devDependencies`. Not published yet.
+- `pnpm-workspace.yaml` turns off peer auto-install: the
+  `@guisam/agent-profiles` peer is for consumers, and npm has no matching
+  version yet.
 
 ## Commands
 
