@@ -11,10 +11,6 @@ const messages = {
       light: 'Light',
       dark: 'Dark',
     },
-    home: {
-      title: 'Nothing to show yet',
-      text: 'Resolution explorer, skill library and configuration editing will appear here.',
-    },
   },
 }
 
