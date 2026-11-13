@@ -34,8 +34,17 @@ visualizer to:
 
 ## Status
 
-- Scaffold only: app bar with a theme menu and an empty home page. No
-  visualizer features yet.
+- First implementation of every screen in `docs/ui-plan.md`: Resolution
+  (`src/pages/index.vue`), Skills (`src/pages/skills/index.vue`), Compare
+  (`src/pages/skills/compare.vue`) and edit mode. Not yet checked against a
+  live server; the dev server runs on recorded fixtures.
+- Code layout: API types and client in `src/api/`, Pinia stores per screen
+  in `src/stores/`, the shared confirmation dialog in
+  `src/composables/useConfirm.ts` and `src/components/ConfirmDialog.vue`.
+- Vuetify utility classes are off (`$utilities: false`). Use Tailwind
+  utilities, such as `text-on-surface/70` for muted text.
+- Routes use hash history: the visualizer server serves only known files
+  under its session URL, so path-based deep links would not survive a reload.
 - Target: feature parity with the prototype, then improve on it. The
   prototype's behavior and the API are described in `docs/visualize.md` in
   `guisam/Agent-Profiles`. Read it before you build a screen.
@@ -44,6 +53,11 @@ visualizer to:
 - Blocked for live API calls from the dev server:
   [guisam/Agent-Profiles#124](https://github.com/guisam/Agent-Profiles/issues/124)
   adds `visualize --allow-origin` (see "Agent Profiles API" below).
+- End goal: `npx agent-profiles visualize` serves this app's build when
+  `@guisam/agent-profiles-visualizer` is installed, so it runs on the API's own
+  origin: [guisam/Agent-Profiles#125](https://github.com/guisam/Agent-Profiles/issues/125).
+  This side still needs Vite `base: './'`, reading the CSP nonce for Vuetify's
+  `cspNonce`, and an npm package.
 
 ## Commands
 
@@ -132,3 +146,21 @@ not from source code. Do not add a proxy that rewrites `Origin` or `Host`.
 
 The authoritative API description is `docs/visualize.md` in
 `guisam/Agent-Profiles`.
+
+### Fixture mode
+
+Until #124 lands, `.env.development` sets `VITE_AP_FIXTURES=true` and the dev
+server answers API calls from recorded responses (`src/api/fixtures.ts`).
+Each folder in `src/fixtures/` is one recorded project: `default` (the
+Agent Profiles repository) and `workflow-skills`. `VITE_AP_FIXTURE_SET` picks
+one; set it in `.env.development.local` and restart `pnpm dev`.
+Resolutions exist for every configured host, model and family (and none) ×
+role × no, each single or all optional skills; comparisons for each pair
+within a same-name group on the Skills tab and between project-local skills.
+Other requests return an error. Edits are accepted but
+change nothing, and replacement previews are refused. To re-record, start
+`agent-profiles visualize --edit` and run
+`node scripts/capture-fixtures.mjs <session URL> src/fixtures/<set>`.
+
+To use a live server, put `VITE_AP_FIXTURES=false` and
+`VITE_AP_SESSION_URL=<session URL>` in `.env.development.local`.
