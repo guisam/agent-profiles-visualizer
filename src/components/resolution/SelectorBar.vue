@@ -1,6 +1,9 @@
 <template>
-  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-    <template v-for="field in fields" :key="field.key">
+  <div
+    class="grid gap-3 sm:grid-cols-2"
+    :class="shown.length === 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'"
+  >
+    <template v-for="field in shown" :key="field.key">
       <!-- Any model ID can be typed: unconfigured models resolve through the fallbacks. -->
       <v-combobox
         v-if="field.key === 'model'"
@@ -71,7 +74,7 @@ const fields: Field[] = [
     key: 'model',
     label: 'Model',
     placeholder: 'Unspecified model (use fallback)',
-    help: 'The exact model ID the agent runs as. Pick a configured model or type any ID and press Enter. An exact entry under models: (or an alias) picks the model profile. A model with no exact entry falls back to Family fallback, then a configured family prefix, then the default profile.',
+    help: 'The exact model ID the agent runs as. Pick a configured model or type any ID and press Enter. An exact entry under models: (or an alias) picks the model profile. A model with no exact entry falls back to a configured family (chosen or matched by prefix), then the default profile.',
   },
   {
     key: 'family',
@@ -86,6 +89,17 @@ const fields: Field[] = [
     help: 'The job the agent is doing, such as implementer or reviewer. The role adds its own instructions and decides which skills are required (always loaded) and which are available on demand.',
   },
 ]
+
+// Family fallback applies only to configured families; hide it when there are none.
+const shown = computed(() =>
+  fields.filter(
+    (field) =>
+      field.key !== 'family' ||
+      !store.config ||
+      store.config.families.length > 0 ||
+      store.selection.family !== null,
+  ),
+)
 
 const modelPlaceholder = computed(() =>
   store.config && !store.config.models.length
